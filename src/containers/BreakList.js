@@ -15,19 +15,19 @@ class BreakList extends Component {
 
     mapBreaks = (arr) => {
         return arr.map( (b, i) => (<tr key={i}>
-            <td>
+            <td style={{ width: "10%" }}>  
                 {b.active}
             </td>
-            <td>
+            <td style={{ width: "20%" }}>
                 {b.name}
             </td>
-            <td>
+            <td style={{ width: "30%" }}>
                 {b.url}
             </td>
-            <td>
+            <td style={{ width: "20%" }}>
                 {b.timer} {b.minOrSec}, {b.timerType}
             </td>
-            <td>
+            <td style={{ width: "10%" }}>
                 {this.buttonType(b)}
             </td>
 
@@ -38,7 +38,7 @@ class BreakList extends Component {
         if(arr.length === 0){
             return (
                 <tr>
-                    <td colSpan="5" style={{textAlign: 'center', width: 1400, height: 200}}>
+                    <td colSpan="5" style={{ width: 1400,  }}>
                         <h5>None yet...</h5>
                     </td>
                 </tr>
@@ -54,19 +54,19 @@ class BreakList extends Component {
                 <table className="table table-striped table-dark">
                     <thead>
                         <tr>
-                            <th>
+                            <th style={{width: "10%"}}>
                                 Active?
                             </th>
-                            <th>
+                            <th style={{ width: "20%" }}>
                                 Break Name
                             </th>
-                            <th>
+                            <th style={{ width: "30%" }}>
                                 Pop-Up URL
                             </th>
-                            <th>
+                            <th style={{ width: "20%" }}>
                                 Timer Info
                             </th>
-                            <th>
+                            <th style={{ width: "10%" }}>
                                 Start/Cancel
                             </th>
                         </tr>
@@ -74,8 +74,6 @@ class BreakList extends Component {
                     </thead>
                     <tbody>
                             {this.renderBreakList(this.props.breaks)}
-                            {/* {this.mapBreaks(this.props.breaks)} */}
-
                     </tbody>
                 </table>
                 

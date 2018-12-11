@@ -25,10 +25,8 @@ class App extends Component {
 
   activateBreak = (obj) => {
     const functionsCopy = [...this.state.functions];
-    // const objName = obj.name;
     let funcId;
     if(obj.timerType === "interval"){
-      // functionsCopy[`${obj.name}`] = setInterval(() => {
       funcId = setInterval(() => {
         fetch(`https://aegd3062j8.execute-api.us-east-1.amazonaws.com/prod/OpenWindow?url=${obj.url}`)
           .then(res => res.json())
@@ -88,6 +86,7 @@ class App extends Component {
       breaks: newBreaks
     });
   }
+
 
   render() {
 

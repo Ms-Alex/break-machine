@@ -18,7 +18,7 @@ body {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
@@ -46,8 +46,26 @@ hr {
   text-align: center;
 }
 
+/* .break-list table {
+    width: 100%;
+    display:block;
+} */
+
 .break-list thead {
   display: table;
+  width: 100%;
+  min-width: 100%;
+}
+
+.break-list tbody {
+  display: block;
+  height: 200px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* .break-list thead tr {
+  display: block;
   width: 100%;
 }
 
@@ -58,3 +76,13 @@ hr {
   width:100%;
   height: 200px;
 }
+
+.break-list tbody tr {
+  display: table;
+	width:100%;
+  table-layout:fixed;
+}
+
+.break-list th, .break-list td {
+  min-width: 100%;
+} */
