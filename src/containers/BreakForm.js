@@ -18,7 +18,19 @@ class BreakForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.changeToMilliSec();
+        if(this.checkBreakName()) {
+            return;
+        } else {
+            this.changeToMilliSec();
+        }
+    }
+
+    checkBreakName = () => {
+        if(this.props.breakNames.includes(this.state.name)){
+            alert(`Break Name ${this.state.name} already exists`);
+            return true;
+        }
+        return false;
     }
 
     createBreak = () => {

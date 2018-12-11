@@ -4,9 +4,9 @@ class BreakList extends Component {
 
     buttonType = (breakObj) => {
         if(breakObj.active === 'Yes'){
-            return <button>Cancel</button>
+            return <button onClick={() => this.props.deActivateBreak(breakObj)}>Cancel</button>
         }
-        return <button>Start</button>
+        return <button onClick={() => this.props.activateBreak(breakObj)}>Start</button>
     }
 
     mapBreaks = (arr) => {
