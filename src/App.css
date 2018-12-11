@@ -46,11 +46,6 @@ hr {
   text-align: center;
 }
 
-/* .break-list table {
-    width: 100%;
-    display:block;
-} */
-
 .break-list thead {
   display: table;
   width: 100%;
@@ -64,25 +59,3 @@ hr {
   width: 100%;
 }
 
-/* .break-list thead tr {
-  display: block;
-  width: 100%;
-}
-
-.break-list tbody {
-  overflow:auto;
-	overflow-x:hidden;
-	display:block;
-  width:100%;
-  height: 200px;
-}
-
-.break-list tbody tr {
-  display: table;
-	width:100%;
-  table-layout:fixed;
-}
-
-.break-list th, .break-list td {
-  min-width: 100%;
-} */
