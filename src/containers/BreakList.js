@@ -14,7 +14,7 @@ class BreakList extends Component {
     }
 
     mapBreaks = (arr) => {
-        return arr.map( (b, i) => (<tr key={i}>
+        return arr.map( (b, i) => (<tr key={i}> 
             <td style={{ width: "10%" }}>  
                 {b.active}
             </td>

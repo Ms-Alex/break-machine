@@ -47,36 +47,32 @@ class App extends Component {
             return fn();
           });
       }, obj.timerMilli);
-
     }
-
     functionsCopy.push({ [obj.name]: funcId })
-
     this.setState({
       functions: functionsCopy
     }, () => { if(obj.active === 'No') this.findObj(obj.name, 'Yes')});
+    alert("Successfully activated break!");
   }
 
   deActivateBreak = (obj) => {
     const functionsCopy = [...this.state.functions];
     let fnObjIndex;
-    
     for(let i = 0; i < functionsCopy.length; i++){
       if (Object.keys(functionsCopy[i]).includes(obj.name)){
         fnObjIndex = i;
       } 
     }
-
     if (obj.timerType === "interval"){
       clearInterval(functionsCopy[fnObjIndex][`${obj.name}`]);
     } else {
       clearTimeout(functionsCopy[fnObjIndex][`${obj.name}`]);
     }
     functionsCopy.splice(fnObjIndex, 1);
-
     this.setState({
       functions: functionsCopy
     }, () => this.findObj(obj.name, 'No'));
+    alert("Successfully deActivated break!");
   }
 
   findObj = (objName, changeStr) => {
@@ -89,11 +85,10 @@ class App extends Component {
 
 
   render() {
-
     return (
       <div className="conainer">
         <Header />
-
+    
         <NewBreak addNewBreak={this.addNewBreak} breakNames={this.state.breakNames} />
         <hr />
         <YourBreaks breaks={this.state.breaks} activateBreak={this.activateBreak} deActivateBreak={this.deActivateBreak} />
