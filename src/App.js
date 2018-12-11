@@ -20,14 +20,18 @@ class App extends Component {
       breaks: [...stateBreaksCopy, obj],
       breakNames: [...stateBreaksNamesCopy, obj.name]
     });
-    // this.activateBreak(obj);
+    this.activateBreak(obj);
   }
 
   activateBreak = (obj) => {
-    let functionsCopy = [...this.state.functions];
+    const functionsCopy = [...this.state.functions];
+    // const objName = obj.name;
+    let funcId;
     if(obj.timerType === "interval"){
-      functionsCopy[`${obj.name}`] = setInterval(() => {
+      // functionsCopy[`${obj.name}`] = setInterval(() => {
+      funcId = setInterval(() => {
         fetch(`https://dzdz136vle.execute-api.us-east-1.amazonaws.com/dev/OpenWindow?url=${obj.url}`).then(res => res.json()).then(data => {
+          // eslint-disable-next-line
           let fn = new Function(data.function)
           return fn();
         });
@@ -37,43 +41,42 @@ class App extends Component {
         fetch(`https://dzdz136vle.execute-api.us-east-1.amazonaws.com/dev/OpenWindow?url=${obj.url}`)
           .then(res => res.json())
           .then(data => {
+            // eslint-disable-next-line
             let fn = new Function(data.function);
+            this.findObj(obj.name, 'No');
             return fn();
           });
       }, obj.timerMilli);
+
     }
 
-    if(obj.active === 'No'){
-      this.findObj(obj.name, 'Yes');
-    }
+    functionsCopy.push({ [obj.name]: funcId })
 
     this.setState({
       functions: functionsCopy
-    }, () => { if(obj.name === 'No') this.findObj(obj.name, 'Yes')});
+    }, () => { if(obj.active === 'No') this.findObj(obj.name, 'Yes')});
   }
 
   deActivateBreak = (obj) => {
-    // const functionsCopy = [...this.state.functions];
+    const functionsCopy = [...this.state.functions];
+    let fnObjIndex;
+    
+    for(let i = 0; i < functionsCopy.length; i++){
+      if (Object.keys(functionsCopy[i]).includes(obj.name)){
+        fnObjIndex = i;
+      } 
+    }
 
-    // if (obj.timerType === "interval"){
-    //   clearInterval(functionsCopy[`${obj.name}`]);
-    // } else {
-    //   clearTimeout(functionsCopy[`${obj.name}`]);
-    // }
-    // delete functionsCopy[`${obj.name}`];
-    // this.setState({
-    //   functions: functionsCopy
-    // }, () => this.findObj(obj.name, 'No'));
-    console.log('hi');
-  }
+    if (obj.timerType === "interval"){
+      clearInterval(functionsCopy[fnObjIndex][`${obj.name}`]);
+    } else {
+      clearTimeout(functionsCopy[fnObjIndex][`${obj.name}`]);
+    }
+    functionsCopy.splice(fnObjIndex, 1);
 
-  clickTest = () => {
-    fetch(`https://dzdz136vle.execute-api.us-east-1.amazonaws.com/dev/OpenWindow?url=https://www.youtube.com/watch?v=ApXoWvfEYVU&list=RDApXoWvfEYVU&start_radio=1`)
-      .then(res => res.json())
-      .then(data => {
-        let fn = new Function(data.function);
-        return fn();
-      });
+    this.setState({
+      functions: functionsCopy
+    }, () => this.findObj(obj.name, 'No'));
   }
 
   findObj = (objName, changeStr) => {
@@ -85,11 +88,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
+
     return (
       <div className="conainer">
         <Header />
-        <button onClick={this.clickTest}>Click Me!</button>
 
         <NewBreak addNewBreak={this.addNewBreak} breakNames={this.state.breakNames} />
         <hr />

@@ -4,7 +4,7 @@ class BreakForm extends Component {
     state = {
         name: '',
         url: '',
-        timer: 0,
+        timer: '',
         minOrSec: 'min',
         timerMilli: 0,
         timerType: 'interval'
@@ -34,7 +34,6 @@ class BreakForm extends Component {
     }
 
     createBreak = () => {
-        console.log(this.state);
         let stateCopy = {...this.state};
         stateCopy.active = 'Yes';
         this.props.addNewBreak(stateCopy);
@@ -57,7 +56,7 @@ class BreakForm extends Component {
         this.setState({
             name: '',
             url: '',
-            timer: 0,
+            timer: '',
             minOrSec: 'min',
             timerMilli: 0,
             timerType: 'interval'
