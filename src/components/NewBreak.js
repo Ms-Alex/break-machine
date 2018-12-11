@@ -4,7 +4,8 @@ import BreakForm from '../containers/BreakForm';
 const NewBreak = () => {
     return (
         <div className="container new-break">
-            <h2>Create a new break timer:</h2>
+            <h3>Create a new break timer:</h3>
+            <br />
             <BreakForm />
         </div>
     );

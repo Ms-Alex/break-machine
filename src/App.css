@@ -28,7 +28,15 @@ body {
 }
 
 hr {
-  border : 0;
+  border: 0;
   height: 3px; 
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+.new-break {
+  padding: 25px 0;
+}
+
+.break-form {
+  text-align: center;
 }
