@@ -30,20 +30,22 @@ class App extends Component {
     if(obj.timerType === "interval"){
       // functionsCopy[`${obj.name}`] = setInterval(() => {
       funcId = setInterval(() => {
-        fetch(`https://dzdz136vle.execute-api.us-east-1.amazonaws.com/dev/OpenWindow?url=${obj.url}`).then(res => res.json()).then(data => {
-          // eslint-disable-next-line
-          let fn = new Function(data.function)
-          return fn();
-        });
-      }, obj.timerMilli)
-    } else {
-      functionsCopy[`${obj.name}`] = setTimeout(() => {
-        fetch(`https://dzdz136vle.execute-api.us-east-1.amazonaws.com/dev/OpenWindow?url=${obj.url}`)
+        fetch(`https://aegd3062j8.execute-api.us-east-1.amazonaws.com/prod/OpenWindow?url=${obj.url}`)
           .then(res => res.json())
           .then(data => {
             // eslint-disable-next-line
             let fn = new Function(data.function);
-            this.findObj(obj.name, 'No');
+            return fn();
+          });
+      }, obj.timerMilli)
+    } else {
+      functionsCopy[`${obj.name}`] = setTimeout(() => {
+        fetch(`https://aegd3062j8.execute-api.us-east-1.amazonaws.com/prod/OpenWindow?url=${obj.url}`)
+          .then(res => res.json())
+          .then(data => {
+            // eslint-disable-next-line
+            let fn = new Function(data.function);
+            this.findObj(obj.name, "No");
             return fn();
           });
       }, obj.timerMilli);
