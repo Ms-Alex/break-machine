@@ -1,12 +1,12 @@
 import React from 'react';
 import BreakForm from '../containers/BreakForm';
 
-const NewBreak = () => {
+const NewBreak = ({ addNewBreak }) => {
     return (
         <div className="container new-break">
-            <h3>Create a new break timer:</h3>
+            <h4>Create a new break timer:</h4>
             <br />
-            <BreakForm />
+            <BreakForm addNewBreak={addNewBreak}  />
         </div>
     );
 }

@@ -10,14 +10,23 @@ class App extends Component {
     breaks: []
   }
 
+  // breakObj = {name, url, timer, minOrSec, timerMilli, timerType, active}
+  addNewBreak = (obj) => {
+    let stateCopy = [...this.state.breaks]
+    this.setState({
+      breaks: [...stateCopy, obj]
+    });
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div className="conainer">
         <Header />
 
-        <NewBreak />
+        <NewBreak addNewBreak={this.addNewBreak} />
         <hr />
-        <YourBreaks />
+        <YourBreaks breaks={this.state.breaks} />
 
         <Footer />
       </div>

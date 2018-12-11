@@ -1,10 +1,12 @@
 import React from 'react';
+import BreakList from '../containers/BreakList';
 
-const YourBreaks = () => {
+const YourBreaks = ({ breaks }) => {
     return (
         <div className="container your-breaks">
-            <h3>Your Breaks:</h3>
-            
+            <h4>Your Breaks:</h4>
+            <br />
+            <BreakList breaks={breaks} />
         </div>
     );
 }

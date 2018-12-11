@@ -5,9 +5,9 @@ class BreakForm extends Component {
         name: '',
         url: '',
         timer: 0,
-        minOrSec: '',
+        minOrSec: 'min',
         timerMilli: 0,
-        timerType: ''
+        timerType: 'interval'
     }
 
     onChange = (e) => {
@@ -19,15 +19,14 @@ class BreakForm extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.changeToMilliSec();
-        // console.log(this.state);
-        this.setState({
-            name: '',
-            url: '',
-            timer: 0,
-            minOrSec: '',
-            timerMilli: 0,
-            timerType: ''
-        });
+    }
+
+    createBreak = () => {
+        console.log(this.state);
+        let stateCopy = {...this.state};
+        stateCopy.active = 'Yes';
+        this.props.addNewBreak(stateCopy);
+        this.resetState();
     }
 
     changeToMilliSec = () => {
@@ -39,7 +38,18 @@ class BreakForm extends Component {
         }
         this.setState({
             timerMilli: timeInMilli
-        }, () => console.log(this.state));
+        }, () => this.createBreak());
+    }
+
+    resetState = () => {
+        this.setState({
+            name: '',
+            url: '',
+            timer: 0,
+            minOrSec: 'min',
+            timerMilli: 0,
+            timerType: 'interval'
+        });
     }
 
     render() {
@@ -60,13 +70,14 @@ class BreakForm extends Component {
                         <tbody>
                             <tr>
                                 <td>
-                                    <input type="text" placeholder="max length 16 chars" maxLength="16" required name="name" value={this.state.name} onChange={(e) => this.onChange(e)} />
+                                    <input type="text" placeholder="max length 20 chars" maxLength="20" required name="name" value={this.state.name} onChange={(e) => this.onChange(e)} />
                                 </td>
                                 <td>
                                     <input type="text" placeholder="enter url" required name="url" value={this.state.url} onChange={(e) => this.onChange(e)} />
                                 </td>
                                 <td>
                                     <input placeholder="time" type="number" min="1" required name="timer" value={this.state.timer} onChange={(e) => this.onChange(e)} /> &nbsp;
+
                                     <select name="minOrSec" value={this.state.minOrSec} onChange={(e) => this.onChange(e)}>
                                         <option value="min">min</option>
                                         <option value="sec">sec</option>
@@ -77,7 +88,7 @@ class BreakForm extends Component {
                                         <option value="interval">
                                             Interval
                                         </option>
-                                        <option className="once">
+                                        <option value="once">
                                             Once
                                         </option>
 
