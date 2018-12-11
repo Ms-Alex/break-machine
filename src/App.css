@@ -37,6 +37,11 @@ hr {
   padding: 25px 0;
 }
 
+.submit-break:hover {
+  background-color: #2dbbef;
+  color: white;
+}
+
 .break-form, .break-list {
   text-align: center;
 }

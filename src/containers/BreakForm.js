@@ -110,7 +110,7 @@ class BreakForm extends Component {
                         </tbody>
                     </table>
 
-                    <button className="submit-break">Activate</button>  
+                    <button className="submit-break btn">Activate</button>  
                 </form>
                 
             </div>
